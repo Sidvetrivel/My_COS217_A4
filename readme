@@ -3,12 +3,12 @@ Assignment 4 readme File
 ------------------------------------------------------------------------
 Student 1: What is your name?
 
-
+Siddharth Vetrivel
 
 ------------------------------------------------------------------------
 Student 2: What is your name?
 
-
+Julian Jimenez
 
 ------------------------------------------------------------------------
 Student 1: What authorized sources of information did you use to
@@ -117,15 +117,15 @@ the error manifests itself or is "noticed" by the client.
 
       Executable         Function with the underlying error
 ===============================================================
-         ./bdtBad1        
+         ./bdtBad1       BDT_insert
 ---------------------------------------------------------------
-         ./bdtBad2        
+         ./bdtBad2       BDT_FreeSubtree
 ---------------------------------------------------------------
-         ./bdtBad3        
+         ./bdtBad3       BDT_addChild
 ---------------------------------------------------------------
-         ./bdtBad4        
+         ./bdtBad4       BDT_strlenAccumulate
 ---------------------------------------------------------------
-         ./bdtBad5        
+         ./bdtBad5       BDT_strcatAccumulate
 ===============================================================
 
 ------------------------------------------------------------------------
