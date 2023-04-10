@@ -73,7 +73,7 @@ static boolean CheckerDT_treeCheck(Node_T oNNode) {
             return FALSE;
          }
 
-         for(ucIndex = 1; ucIndex < Node_getNumChildren(oNNode); ulIndex++)
+         for(ucIndex = 0; ucIndex < Node_getNumChildren(oNNode); ucIndex++)
          {
             Node_T nextNode = NULL;
             Path_T currentPath;
