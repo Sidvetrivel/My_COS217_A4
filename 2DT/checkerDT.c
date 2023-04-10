@@ -76,9 +76,11 @@ static boolean CheckerDT_treeCheck(Node_T oNNode) {
          for(ucIndex = 1; ucIndex < Node_getNumChildren(oNNode); ulIndex++)
          {
             Node_T nextNode = NULL;
-            Path_T currentPath = Node_getPath(oNNode);
-            Path_T nextPath = Node_getPath(nextNode);
+            Path_T currentPath;
+            Path_T nextPath;
             Node_getChild(oNNode, ucIndex, &nextNode);
+            currentPath = Node_getPath(oNNode);
+            nextPath = Node_getPath(nextNode);
             if(Path_comparePath(currentPath, nextPath) == 0){
                fprintf(stderr, "File tree has duplicate paths\n");
                return FALSE;
