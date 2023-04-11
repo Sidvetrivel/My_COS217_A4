@@ -52,7 +52,8 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
             Node_T nextNode = NULL;
             Path_T currNodepath;
             Path_T nextNodepath;
-            int currStatus = Node_getChild(oNNode, ucIndex-1, &currNode);
+            int currStatus;
+            currStatus = Node_getChild(oNNode, ucIndex-1, &currNode);
             if(currStatus != SUCCESS){
                fprintf(stderr, "child does not exist\n");
                return FALSE;
@@ -69,7 +70,8 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
                return FALSE;
             }
             if(Path_comparePath(currNodepath, nextNodepath) > 0){
-               fprintf(stderr, "File tree has paths that are out of order\n");
+               fprintf(stderr, "File tree has paths that are out 
+               of order\n");
                return FALSE;
             }
          }
