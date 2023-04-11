@@ -44,7 +44,7 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
    }
 
    /* Checks if there are any duplicate paths between all the children
-   of the node */ 
+   of the node and ensures typographical order is maintained */ 
    numChildren = Node_getNumChildren(oNNode);
    for(ucIndex = 1; ucIndex < numChildren; ucIndex++)
          {
