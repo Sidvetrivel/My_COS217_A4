@@ -19,6 +19,8 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
    Path_T oPPPath;
 
    size_t ucIndex;
+   size_t numChildren;
+
 
    /* Sample check: a NULL pointer is not a valid node */
    if(oNNode == NULL) {
@@ -26,15 +28,26 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
       return FALSE;
    }
 
-   for(ucIndex = 0; ucIndex < Node_getNumChildren(oNNode); ucIndex++)
+   numChildren = Node_getNumChildren(oNNode)-1;
+   for(ucIndex = 0; ucIndex < numChildren; ucIndex++)
          {
+            Node_T currNode = NULL;
             Node_T nextNode = NULL;
-            Path_T currentPath;
-            Path_T nextPath;
-            Node_getChild(oNNode, ucIndex, &nextNode);
-            currentPath = Node_getPath(oNNode);
-            nextPath = Node_getPath(nextNode);
-            if(Path_comparePath(currentPath, nextPath) == 0){
+            Path_T currNodepath;
+            Path_T nextNodepath;
+            int currStatus = Node_getChild(oNNode, ucIndex, &currNode);
+            int nextStatus = Node_getChild(oNNode, (ucIndex+1), &nextNode);
+            if(currStatus != SUCCESS){
+               fprintf(stderr, "child does not exist\n");
+               return FALSE;
+            }
+            if(nextStatus != SUCCESS){
+               fprintf(stderr, "child does not exist\n");
+               return FALSE;
+            }
+            currNodepath = Node_getPath(currNode);
+            nextNodepath = Node_getPath(nextNode);
+            if(Path_comparePath(currNodepath, nextNodepath) == 0){
                fprintf(stderr, "File tree has duplicate paths\n");
                return FALSE;
             }
