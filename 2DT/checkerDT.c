@@ -43,19 +43,19 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
       }
    }
 
-   numChildren = Node_getNumChildren(oNNode)-1;
-   for(ucIndex = 0; ucIndex < numChildren; ucIndex++)
+   numChildren = Node_getNumChildren(oNNode);
+   for(ucIndex = 1; ucIndex < numChildren; ucIndex++)
          {
             Node_T currNode = NULL;
             Node_T nextNode = NULL;
             Path_T currNodepath;
             Path_T nextNodepath;
-            int currStatus = Node_getChild(oNNode, ucIndex, &currNode);
-            int nextStatus = Node_getChild(oNNode, (ucIndex+1), &nextNode);
+            int currStatus = Node_getChild(oNNode, ucIndex-1, &currNode);
             if(currStatus != SUCCESS){
                fprintf(stderr, "child does not exist\n");
                return FALSE;
             }
+            int nextStatus = Node_getChild(oNNode, ucIndex, &nextNode);
             if(nextStatus != SUCCESS){
                fprintf(stderr, "child does not exist\n");
                return FALSE;
