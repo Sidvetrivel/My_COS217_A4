@@ -18,11 +18,28 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
    Path_T oPNPath;
    Path_T oPPPath;
 
+   size_t ucIndex;
+
    /* Sample check: a NULL pointer is not a valid node */
    if(oNNode == NULL) {
       fprintf(stderr, "A node is a NULL pointer\n");
       return FALSE;
    }
+
+   for(ucIndex = 0; ucIndex < Node_getNumChildren(oNNode); ucIndex++)
+         {
+            Node_T nextNode = NULL;
+            Path_T currentPath;
+            Path_T nextPath;
+            Node_getChild(oNNode, ucIndex, &nextNode);
+            currentPath = Node_getPath(oNNode);
+            nextPath = Node_getPath(nextNode);
+            if(Path_comparePath(currentPath, nextPath) == 0){
+               fprintf(stderr, "File tree has duplicate paths\n");
+               return FALSE;
+            }
+         }
+
 
    /* Sample check: parent's path must be the longest possible
       proper prefix of the node's path */
@@ -53,7 +70,6 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
 */
 static boolean CheckerDT_treeCheck(Node_T oNNode) {
    size_t ulIndex;
-   size_t ucIndex;
 
    if(oNNode!= NULL) {
 
@@ -71,20 +87,6 @@ static boolean CheckerDT_treeCheck(Node_T oNNode) {
          if(iStatus != SUCCESS) {
             fprintf(stderr, "getNumChildren claims more children than getChild returns\n");
             return FALSE;
-         }
-
-         for(ucIndex = 0; ucIndex < Node_getNumChildren(oNNode); ucIndex++)
-         {
-            Node_T nextNode = NULL;
-            Path_T currentPath;
-            Path_T nextPath;
-            Node_getChild(oNNode, ucIndex, &nextNode);
-            currentPath = Node_getPath(oNNode);
-            nextPath = Node_getPath(nextNode);
-            if(Path_comparePath(currentPath, nextPath) == 0){
-               fprintf(stderr, "File tree has duplicate paths\n");
-               return FALSE;
-            }
          }
 
          /* if recurring down one subtree results in a failed check
