@@ -47,7 +47,7 @@ Path_T Node_getPath(Node_T oNNode);
   such a child, stores in *pulChildID the identifier that such a
   child _would_ have if inserted.
 */
-boolean Node_hasChild(Node_T oNParent, Path_T oPPath,
+bool Node_hasChild(Node_T oNParent, Path_T oPPath,
                          size_t *pulChildID);
 
 /* Returns the number of children that oNParent has. */
