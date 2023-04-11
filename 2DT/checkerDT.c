@@ -28,6 +28,21 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
       return FALSE;
    }
 
+   /* Sample check: parent's path must be the longest possible
+      proper prefix of the node's path */
+   oNParent = Node_getParent(oNNode);
+   if(oNParent != NULL) {
+      oPNPath = Node_getPath(oNNode);
+      oPPPath = Node_getPath(oNParent);
+
+      if(Path_getSharedPrefixDepth(oPNPath, oPPPath) !=
+         Path_getDepth(oPNPath) - 1) {
+         fprintf(stderr, "P-C nodes don't have P-C paths: (%s) (%s)\n",
+                 Path_getPathname(oPPPath), Path_getPathname(oPNPath));
+         return FALSE;
+      }
+   }
+
    numChildren = Node_getNumChildren(oNNode)-1;
    for(ucIndex = 0; ucIndex < numChildren; ucIndex++)
          {
@@ -53,21 +68,6 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
             }
          }
 
-
-   /* Sample check: parent's path must be the longest possible
-      proper prefix of the node's path */
-   oNParent = Node_getParent(oNNode);
-   if(oNParent != NULL) {
-      oPNPath = Node_getPath(oNNode);
-      oPPPath = Node_getPath(oNParent);
-
-      if(Path_getSharedPrefixDepth(oPNPath, oPPPath) !=
-         Path_getDepth(oPNPath) - 1) {
-         fprintf(stderr, "P-C nodes don't have P-C paths: (%s) (%s)\n",
-                 Path_getPathname(oPPPath), Path_getPathname(oPNPath));
-         return FALSE;
-      }
-   }
 
    return TRUE;
 }
