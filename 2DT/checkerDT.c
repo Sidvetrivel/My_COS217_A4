@@ -70,8 +70,7 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
                return FALSE;
             }
             if(Path_comparePath(currNodepath, nextNodepath) > 0){
-               fprintf(stderr, "File tree has paths that are out 
-               of order\n");
+               fprintf(stderr, "File tree has paths that are out of order\n");
                return FALSE;
             }
          }
