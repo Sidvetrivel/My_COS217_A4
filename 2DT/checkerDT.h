@@ -12,7 +12,11 @@
 /*
    Returns TRUE if oNNode represents a directory entry
    in a valid state, or FALSE otherwise. Prints explanation
-   to stderr in the latter case.
+   to stderr in the latter case. isValid also checks if the children 
+   of oNNode have any duplicate paths and prints FALSE if a duplicate 
+   path is found and otherwise prints TRUE. isValid checks if all 
+   children of oNNode are within the dynarray in lexigraphic order and 
+   returns FALSE if there is a misordering found and TRUE otherwise.
 */
 boolean CheckerDT_Node_isValid(Node_T oNNode);
 

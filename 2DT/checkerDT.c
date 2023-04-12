@@ -90,6 +90,7 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
 */
 static boolean CheckerDT_treeCheck(Node_T oNNode) {
    size_t ulIndex;
+   size_t index;
 
    if(oNNode!= NULL) {
 
@@ -102,6 +103,17 @@ static boolean CheckerDT_treeCheck(Node_T oNNode) {
       for(ulIndex = 0; ulIndex < Node_getNumChildren(oNNode); ulIndex++)
       {
          Node_T oNChild = NULL;
+
+
+         index = 0;
+         while(Node_getChild(oNNode, index, &oNChild))
+            index++;
+ 
+         if (index != Node_getNumChildren(oNNode)) {
+            fprintf(stderr, "getNumChildren mismatch\n");
+            return FALSE;
+         }
+
          int iStatus = Node_getChild(oNNode, ulIndex, &oNChild);
 
          if(iStatus != SUCCESS) {
