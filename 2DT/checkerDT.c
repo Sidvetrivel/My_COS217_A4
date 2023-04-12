@@ -119,12 +119,12 @@ static boolean CheckerDT_treeCheck(Node_T oNNode) {
          index = 0;
          while(Node_getChild(oNNode, index, &oNChild))
             index++;
- 
-         if (index != Node_getNumChildren(oNNode)) {
+      }
+      
+       if (index != Node_getNumChildren(oNNode)) {
             fprintf(stderr, "getNumChildren mismatch\n");
             return FALSE;
          }
-      }
    }
    return TRUE;
 }
