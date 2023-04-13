@@ -99,11 +99,13 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
    parameter list to facilitate constructing your checks.
    If you do, you should update this function comment.
 */
-static boolean CheckerDT_treeCheck(Node_T oNNode) {
+static boolean CheckerDT_treeCheck(Node_T oNNode, size_t ulCount) {
    size_t ulIndex;
    size_t index;
 
    if(oNNode!= NULL) {
+
+      index++;
 
       /* Sample check on each node: node must be valid */
       /* If not, pass that failure back up immediately */
@@ -127,6 +129,12 @@ static boolean CheckerDT_treeCheck(Node_T oNNode) {
          if(!CheckerDT_treeCheck(oNChild))
             return FALSE;
       }
+
+      if(index != ulCount){
+         fprintf(stderr, "node mismatch\n");
+         return FALSE;
+      }
+
    }
    return TRUE;
 }
@@ -143,8 +151,6 @@ boolean CheckerDT_isValid(boolean bIsInitialized, Node_T oNRoot,
          return FALSE;
       }
 
-
-
    /* Now checks invariants recursively at each node from the root. */
-   return CheckerDT_treeCheck(oNRoot);
+   return CheckerDT_treeCheck(oNRoot, &compareIndex, ulCount);
 }
