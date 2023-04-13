@@ -43,32 +43,43 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
       }
    }
 
-   /* Checks if there are any duplicate paths between all the children
-   of the node and ensures typographical order is maintained */ 
+   /* Checks if there are any duplicate paths between the children
+   of a node and ensures typographical order is maintained between
+   all children of a node */ 
    numChildren = Node_getNumChildren(oNNode);
    for(ucIndex = 1; ucIndex < numChildren; ucIndex++)
          {
+            /*compares 2 successive nodes at a time*/
             Node_T currNode = NULL;
             Node_T nextNode = NULL;
             Path_T currNodepath;
             Path_T nextNodepath;
             int currStatus;
+
             currStatus = Node_getChild(oNNode, ucIndex-1, &currNode);
+            /*checks if child exists*/
             if(currStatus != SUCCESS){
                fprintf(stderr, "child does not exist\n");
                return FALSE;
             }
+
             int nextStatus = Node_getChild(oNNode, ucIndex, &nextNode);
+            /*checks if child exists*/
             if(nextStatus != SUCCESS){
                fprintf(stderr, "child does not exist\n");
                return FALSE;
             }
+
             currNodepath = Node_getPath(currNode);
             nextNodepath = Node_getPath(nextNode);
+
+            /*checks if there are duplicate paths between 2 nodes*/
             if(Path_comparePath(currNodepath, nextNodepath) == 0){
                fprintf(stderr, "File tree has duplicate paths\n");
                return FALSE;
             }
+
+            /*checks for correct lexigraphic order between 2 nodes*/
             if(Path_comparePath(currNodepath, nextNodepath) > 0){
                fprintf(stderr, "File tree has paths that are out of order\n");
                return FALSE;
@@ -115,16 +126,7 @@ static boolean CheckerDT_treeCheck(Node_T oNNode) {
             farther down, passes the failure back up immediately */
          if(!CheckerDT_treeCheck(oNChild))
             return FALSE;
-
-         index = 0;
-         while(Node_getChild(oNNode, index, &oNChild))
-            index++;
       }
-      
-       if (index != Node_getNumChildren(oNNode)) {
-            fprintf(stderr, "getNumChildren mismatch\n");
-            return FALSE;
-         }
    }
    return TRUE;
 }
