@@ -126,7 +126,7 @@ static boolean CheckerDT_treeCheck(Node_T oNNode, size_t ulCount) {
 
          /* if recurring down one subtree results in a failed check
             farther down, passes the failure back up immediately */
-         if(!CheckerDT_treeCheck(oNChild))
+         if(!CheckerDT_treeCheck(oNChild,ulCount))
             return FALSE;
       }
 
@@ -152,5 +152,5 @@ boolean CheckerDT_isValid(boolean bIsInitialized, Node_T oNRoot,
       }
 
    /* Now checks invariants recursively at each node from the root. */
-   return CheckerDT_treeCheck(oNRoot, &compareIndex, ulCount);
+   return CheckerDT_treeCheck(oNRoot, ulCount);
 }
