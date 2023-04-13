@@ -129,12 +129,10 @@ static boolean CheckerDT_treeCheck(Node_T oNNode, size_t ulCount) {
          if(!CheckerDT_treeCheck(oNChild,ulCount))
             return FALSE;
       }
-
-      if(index != ulCount){
+   }
+   if(index != ulCount){
          fprintf(stderr, "node mismatch\n");
          return FALSE;
-      }
-
    }
    return TRUE;
 }
