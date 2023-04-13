@@ -5,9 +5,9 @@
 # Dependency rules for non-file targets
 all: ft 
 clobber: clean
-    rm -f *~ \#*\# 
+    rm -f *~ \#*\#
 clean:
-    rm -f ft *.o 
+    rm -f ft *.o
 
 # Dependency rules for file targets
 ft: dynarray.o nodeFT.o path.o ft.o ft_client.o
