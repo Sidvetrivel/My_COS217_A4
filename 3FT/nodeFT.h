@@ -46,13 +46,15 @@ Path_T Node_getPath(Node_T oNNode);
   If oNParent has such a child, stores in *pulChildID the child's
   identifier (as used in Node_getChild). If oNParent does not have
   such a child, stores in *pulChildID the identifier that such a
-  child _would_ have if inserted.
-  /* NOT_A_DIRECTORY if oNNode is a file */
+  child _would_ have if inserted. Returns NOT_A_DIRECTORY if oNNode 
+  is a file. 
+*/
 boolean Node_hasChild(Node_T oNParent, Path_T oPPath,
                          size_t *pulChildID);
 
-/* Returns the number of children that oNParent has. 
-  * NOT_A_DIRECTORY if oNNode is a file */
+/* Returns the number of children that oNParent has or NOT_A_DIRECTORY 
+   if oNNode is a file 
+*/
 size_t Node_getNumChildren(Node_T oNParent);
 
 /*
