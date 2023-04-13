@@ -26,7 +26,8 @@ typedef struct node *Node_T;
                  or oNParent is NULL but oPPath is not of depth 1
   * ALREADY_IN_TREE if oNParent already has a child with this path
 */
-int Node_new(Path_T oPPath, Node_T oNParent, Node_T *poNResult);
+int Node_new(Path_T oPPath, Node_T oNParent, Node_T *poNResult,
+ boolean isFile, void *pvContents, size_t length);
 
 /*
   Destroys and frees all memory allocated for the subtree rooted at
@@ -46,11 +47,12 @@ Path_T Node_getPath(Node_T oNNode);
   identifier (as used in Node_getChild). If oNParent does not have
   such a child, stores in *pulChildID the identifier that such a
   child _would_ have if inserted.
-*/
-bool Node_hasChild(Node_T oNParent, Path_T oPPath,
+  /* NOT_A_DIRECTORY if oNNode is a file */
+boolean Node_hasChild(Node_T oNParent, Path_T oPPath,
                          size_t *pulChildID);
 
-/* Returns the number of children that oNParent has. */
+/* Returns the number of children that oNParent has. 
+  * NOT_A_DIRECTORY if oNNode is a file */
 size_t Node_getNumChildren(Node_T oNParent);
 
 /*
@@ -58,6 +60,7 @@ size_t Node_getNumChildren(Node_T oNParent);
   node of oNParent with identifier ulChildID, if one exists.
   Otherwise, sets *poNResult to NULL and returns status:
   * NO_SUCH_PATH if ulChildID is not a valid child for oNParent
+  * NOT_A_DIRECTORY if oNNode is a file
 */
 int Node_getChild(Node_T oNParent, size_t ulChildID,
                   Node_T *poNResult);
@@ -74,6 +77,24 @@ Node_T Node_getParent(Node_T oNNode);
   "greater than" oNSecond, respectively.
 */
 int Node_compare(Node_T oNFirst, Node_T oNSecond);
+
+/* Inputs a node and returns its contents if its a file 
+  * NOT_A_FILE if oNNode is a directory */
+void *Node_returnContents(Node_T oNNode);
+
+/* Replaces the contents and its length of oNNode with pvNewContents
+  and ulNewLength then return the old contents 
+  * NULL if oNNode is a directory */
+void* Node_replaceContents(Node_T oNNode, void *pvNewContents,
+                           size_t ulNewLength);
+
+/* Inputs a node and checks if it is a file */
+boolean Node_isFile(Node_T oNNode);
+
+/* Inputs a node and returns the length of its concents if its
+  a file
+  * NOT_A_FILE if oNNode is a directory */
+size_t Node_contentsLength(Node_T oNNode);
 
 /*
   Returns a string representation for oNNode, or NULL if
