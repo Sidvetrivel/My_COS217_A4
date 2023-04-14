@@ -94,7 +94,8 @@ void *Node_returnContents(Node_T oNNode);
 void* Node_replaceContents(Node_T oNNode, void *pvNewContents,
                            size_t ulNewLength);
 
-/* Inputs a node and checks if it is a file */
+/* Function takes in node (oNNode) and checks if it is a file. Function
+  returns a boolean indicating whether the node is a or isn't a file */
 boolean Node_isFile(Node_T oNNode);
 
 /* Inputs a node and returns the length of its concents if its

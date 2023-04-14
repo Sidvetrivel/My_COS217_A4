@@ -213,7 +213,101 @@ your disagreements with them? Copy the critTer warnings here, and
 express your disagreement after each warning. If there are no
 warnings, then write "None."
 
+---------------------WARNINGS ON FILE ft.c------------------------------
 
+nodeFT.h: line 97: high priority: 
+A function's comment should refer to each parameter by name;
+your comment does not refer to 'oNNode'
+
+nodeFT.h: line 97: high priority: 
+A function's comment should state explicitly what the function returns
+
+ft.c: line 166: high priority: 
+A function's comment should refer to each parameter by name;
+your comment does not refer to 'isFile'
+
+ft.c: line 166: high priority: 
+A function's comment should refer to each parameter by name;
+your comment does not refer to 'pvContents'
+
+ft.c: line 166: high priority: 
+A function's comment should refer to each parameter by name;
+your comment does not refer to 'length'
+
+ft.c: line 298: high priority: 
+A function's comment should refer to each parameter by name;
+your comment does not refer to 'isfile'
+
+ft.c: line 321: high priority: 
+A function's comment should refer to each parameter by name;
+your comment does not refer to 'isFile'
+
+ft.c: line 176: medium priority:
+Do you want to validate 'pvContents' through an assert?
+
+ft.c: line 286: medium priority:
+Do you want to validate 'pcPath' through an assert?
+
+ft.c: line 292: medium priority:
+Do you want to validate 'pcPath' through an assert?
+
+ft.c: line 292: medium priority:
+Do you want to validate 'pvContents' through an assert?
+
+ft.c: line 311: medium priority:
+Do you want to validate 'pcPath' through an assert?
+
+ft.c: line 315: medium priority:
+Do you want to validate 'pcPath' through an assert?
+
+ft.c: line 376: medium priority:
+Do you want to validate 'pcPath' through an assert?
+
+ft.c: line 381: medium priority:
+Do you want to validate 'pcPath' through an assert?
+
+ft.c: line 387: medium priority:
+Do you want to validate 'pcPath' through an assert?
+
+ft.c: line 405: medium priority:
+Do you want to validate 'pvNewContents' through an assert?
+
+ft.c: line 428: medium priority:
+Do you want to validate 'pbIsFile' through an assert?
+
+ft.c: line 428: medium priority:
+Do you want to validate 'pulSize' through an assert?
+
+Warnings regarding comment specifications:
+
+We agree with critTer's warnings regarding specificity on what the 
+comments of certain functions should state such as what it returns
+and making sure all its parameters are referenced within the function
+comment. We will accept these suggestions.
+
+Warnings regarding asserts:
+
+We disagree with criTer on these warning messages as we find asserting
+these values to be unneccessary as variables like pcPath won't be NULL.
+
+
+---------------------WARNINGS ON FILE nodeFT.c--------------------------
+
+nodeFT.h: line 97: high priority: 
+A function's comment should refer to each parameter by name;
+your comment does not refer to 'oNNode'
+
+nodeFT.h: line 97: high priority: 
+A function's comment should state explicitly what the function returns
+
+nodeFT.c: line 80: medium priority:
+Do you want to validate 'poNResult' through an assert?
+
+nodeFT.c: line 80: medium priority:
+Do you want to validate 'pvContents' through an assert?
+
+nodeFT.c: line 307: medium priority:
+Do you want to validate 'pvNewContents' through an assert?
 
 ------------------------------------------------------------------------
 For each of the five faulty BDT implementations required by Step

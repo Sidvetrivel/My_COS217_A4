@@ -163,7 +163,9 @@ static int FT_findNode(const char *pcPath, Node_T *poNResult) {
 
 /*--------------------------------------------------------------------*/
 
-/* Inserts a new node into the FT with absolute path pcPath.
+/* Function takes in parameters pcPath, isFile, pvContent, and length 
+   and inserts a new node (file or directory)into the FT with absolute 
+   path pcPath.
    Returns SUCCESS if the new node is inserted successfully.
    Otherwise, returns:
    * INITIALIZATION_ERROR if the FT is not in an initialized state
@@ -296,7 +298,8 @@ int FT_insertFile(const char *pcPath, void *pvContents,
 /*--------------------------------------------------------------------*/
 
 /* Returns TRUE if the DT contains a directory with absolute path
-   pcPath and FALSE if not or if there is an error while checking. */
+   pcPath and FALSE if not, if there is an error while checking, or 
+   the node is a file using the boolean isFile. */
 static boolean FT_contains(const char *pcPath, boolean isfile) {
    int iStatus;
    Node_T oNFound = NULL;
@@ -329,7 +332,8 @@ boolean FT_containsFile(const char *pcPath)  {
   * MEMORY_ERROR if memory could not be allocated to complete request
   * NOT_A_DIRECTORY if pcPath is in the FT as a file not directory
                      and we are removing a directory  
-  * NOT_A_FILE if pcPath is in the FT as a directory not a file
+  * NOT_A_FILE if pcPath is in the FT as a directory not a file, which 
+                     we find using the boolean isFile, 
                      and we are removing a file 
 */
 static int FT_rm(const char *pcPath, boolean isFile) {
