@@ -87,6 +87,9 @@ boolean isFile, void *pvContents, size_t length) {
 
    assert(oPPath != NULL);
 
+   /*define ulIndex*/
+   ulIndex = NULL;
+
    /* allocate space for a new node */
    psNew = malloc(sizeof(struct node));
    if(psNew == NULL) {
