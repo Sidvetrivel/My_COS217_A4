@@ -122,11 +122,13 @@ Warnings relating to functions being declared but not defined:
 (applicable to all later instances of this same warning which
 there are multiple of)
 
-We disagree with these warnings as the design is much more modular 
-if we were to split our design between the source file and the header
+We disagree with these warnings as the design maintains modularity
+when splitting our design between the source file and the header
 file to protect the definition of the functions from the client. 
 In the implementation we are using, it is not neccessary to 
-define the function within path.h, nodeDT.h, and dynarray.h.
+define the function within path.h, nodeDT.h, and dynarray.h. We want 
+our interfaced to hide the implementation details and keep the client
+from accessing or manipulating the data directly.
 
 
 Warning relating to CheckerDT_Node_isValid not being used outside of 
@@ -209,7 +211,6 @@ nodeFT.c:203:35: Variable ulIndex used before definition
 
 
 Warning relating to the use of ulIndex before definition:
-
 While the size_t ulIndex is not formally initialized, we agree
 with splint on that it would be a good practice to ensure
 variables are initialized before they are used. This will mitigate
@@ -290,14 +291,12 @@ ft.c: line 428: medium priority:
 Do you want to validate 'pulSize' through an assert?
 
 Warnings regarding comment specifications:
-
 We agree with critTer's warnings regarding specificity on what the 
 comments of certain functions should state such as what it returns
 and making sure all its parameters are referenced within the function
 comment. We will accept these suggestions.
 
 Warnings regarding asserts:
-
 We disagree with criTer on these warning messages as we find asserting
 these values to be unneccessary as variables like pcPath won't be NULL.
 
@@ -321,13 +320,11 @@ nodeFT.c: line 307: medium priority:
 Do you want to validate 'pvNewContents' through an assert?
 
 Warnings regarding comment specificity:
-
 We agree with all of critTer's comment warnings as it is good practice
 to refer to all parameters of a function and what it returns within
 the function's comments.
 
 Warnings regarding asserts:
-
 We disagree as it is not neccessary to assert all these variables since
 they can be any value (including NULL) when they are passed as a 
 parameter to certain functions.
@@ -357,6 +354,43 @@ the error manifests itself or is "noticed" by the client.
 What are your critiques of the given DT implementations, as
 specified in Step 2.5?
 
-- dt_insert vs dt_rm naming consistency
+Here is a bullet point list of critiques for the DT implementations:
+
+DT_insert and DT_rm naming: 
+The naming betwee these functions could be more consistent when it 
+comes to whether we use words as opposed to abbrieviations. If
+we were to have abbrieviations in both the function declarations, we 
+would make sure in the header file that they contracts are descriptive.
+However, it would be better to make dt_rm to remove to maintain this 
+naming consistency.
+
+DT_init vs DT_destroy naming:
+The naming between these functions could be more consist where instead
+of init, it may be a better naming convention to use create to show
+that these functions achieve the opposite.
+
+Node_new declaration parameter ordering:
+Parameter order should be consistent between all the nodeDT.h functions.
+In this case, the Node_T parameters should come first before the Path_T
+object. This would make it more consistent with the function 
+declarations since they all have Node_T parameters first.
+ 
+While loop within DT_insert:
+This while loop could possible refactored as it is quite large and spans
+close to 30 lines. Normally, this would be fine but since the DT_insert
+function is already quite large, refactoring this while loop could 
+improve readbility as a whole for the function.
+
+DT_preOrderTraversal Assertion:
+The static method in dtGood.c takes in three parameters but it does not
+assert all 3 and doesn't assert the size_t value (i). In the event that
+i is null, this assert would be helpful in identifying any such error
+that this may cause.
+
+DT_preOrderTraversal pulChild Naming:
+the variable name pulChildID is a little misleading as the variable 
+doesn't actually denote the ID of the particular node but instead the
+index of that particular node. So, a name like pulChildIndex may be 
+more appropriate.
 
 ------------------------------------------------------------------------

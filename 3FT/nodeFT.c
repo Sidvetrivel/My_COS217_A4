@@ -1,7 +1,7 @@
 /* Based off of nodeDT.good */
 /*--------------------------------------------------------------------*/
 /* nodeFT.c                                                           */
-/* Author: Julian Jimenez                                             */
+/* Author: Julian Jimenez and Siddharth Vetrivek                      */
 /*--------------------------------------------------------------------*/
 
 #include <stdlib.h>

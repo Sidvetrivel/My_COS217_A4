@@ -31,7 +31,6 @@ static size_t ulCount;
 
 
 /* --------------------------------------------------------------------
-
   The DT_traversePath and DT_findNode functions modularize the common
   functionality of going as far as possible down an DT towards a path
   and returning either the node of however far was reached or the
