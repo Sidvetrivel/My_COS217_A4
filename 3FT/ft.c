@@ -163,7 +163,7 @@ static int FT_findNode(const char *pcPath, Node_T *poNResult) {
 
 /*--------------------------------------------------------------------*/
 
-/* Function takes in parameters pcPath, isFile, pvContent, and length 
+/* Function takes in parameters pcPath, isFile, pvContents, and length 
    and inserts a new node (file or directory)into the FT with absolute 
    path pcPath.
    Returns SUCCESS if the new node is inserted successfully.
@@ -299,7 +299,7 @@ int FT_insertFile(const char *pcPath, void *pvContents,
 
 /* Returns TRUE if the DT contains a directory with absolute path
    pcPath and FALSE if not, if there is an error while checking, or 
-   the node is a file using the boolean isFile. */
+   the node is a file using the boolean isfile. */
 static boolean FT_contains(const char *pcPath, boolean isfile) {
    int iStatus;
    Node_T oNFound = NULL;

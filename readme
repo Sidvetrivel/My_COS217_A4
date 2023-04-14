@@ -215,6 +215,9 @@ warnings, then write "None."
 
 ---------------------WARNINGS ON FILE ft.c------------------------------
 
+(list does not include file length warnings, 
+number of function warnings, or loop length warnings)
+
 nodeFT.h: line 97: high priority: 
 A function's comment should refer to each parameter by name;
 your comment does not refer to 'oNNode'
