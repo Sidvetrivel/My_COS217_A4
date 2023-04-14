@@ -133,7 +133,9 @@ static boolean CheckerDT_treeCheck(Node_T oNNode, size_t* realIndex) {
 /* see checkerDT.h for specification */
 boolean CheckerDT_isValid(boolean bIsInitialized, Node_T oNRoot,
                           size_t ulCount) {
+   /*stores the value of CheckerDT_treeCheck before getting returned*/
    boolean returnTreeCheck;
+   /* variable that counts the true number of nodes*/
    size_t realIndex = 0;
 
    /* Sample check on a top-level data structure invariant:
