@@ -34,7 +34,6 @@ information given in the "Policies" web page (also available on armlab
 in the file ~cos217/AuthorizedSourcesList ) to this section of the
 readme file, and edit it as appropriate.
 
-
 - The course's lectures.
 - The course's precepts.
 - The course's website.
@@ -95,7 +94,14 @@ just the coding itself.
 will help your grader to grade it in the most favorable light? In
 particular, what bugs are in your submission?
 
-N/A
+We don't have any bugs in the functionality of the program but this is
+more to do with splint and critTer warnings. We weren't sure
+if we were supposed to address function declaration/definition warnings.
+Instead of doing it for every instance, we highlighted that we did
+have many of these warnings throughout all the splint checks we did
+accross both DT and FT and that we generally disagree which can be
+applied to all other instances of the same error. Hopefully, this is 
+thorough enough.
 
 ------------------------------------------------------------------------
 What warnings does splint generate for Part 2's checker, and what are
@@ -113,7 +119,8 @@ Declaration can use static qualifier.
 
 
 Warnings relating to functions being declared but not defined:
-(applicable to all later instances of this same warning)
+(applicable to all later instances of this same warning which
+there are multiple of)
 
 We disagree with these warnings as the design is much more modular 
 if we were to split our design between the source file and the header
@@ -158,12 +165,13 @@ warnings, then write "None."
 (list does not include many function declaration/definition warnings)
 ft.c: (in function FT_traversePath)
 ft.c:91:42: Variable ulChildID used before definition
-  An rvalue is used that may not be initialized to a value on some execution
-  path. (Use -usedef to inhibit warning)
+  An rvalue is used that may not be initialized to a value on some 
+  execution path. (Use -usedef to inhibit warning)
 ft.c: (in function FT_replaceFileContents)
 ft.c:421:4: Return value (type void *) ignored: Node_replaceCont...
-  Result returned by function call is not used. If this is intended, can cast
-  result to (void) to eliminate message. (Use -retvalother to inhibit warning)
+  Result returned by function call is not used. If this is intended, 
+  can cast result to (void) to eliminate message. 
+  (Use -retvalother to inhibit warning)
 
 Warning regarding usage of ulChild before instantiation:
 
