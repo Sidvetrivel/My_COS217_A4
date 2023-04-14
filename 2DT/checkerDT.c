@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------*/
 /* checkerDT.c                                                        */
-/* Author: Julian and Sid                                                           */
+/* Author: Julian and Sid                                             */
 /*--------------------------------------------------------------------*/
 
 #include <assert.h>
@@ -21,6 +21,7 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
    size_t ucIndex;
    size_t numChildren;
 
+   int nextStatus;
 
    /* Sample check: a NULL pointer is not a valid node */
    if(oNNode == NULL) {
@@ -63,7 +64,7 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
                return FALSE;
             }
 
-            int nextStatus = Node_getChild(oNNode, ucIndex, &nextNode);
+            nextStatus = Node_getChild(oNNode, ucIndex, &nextNode);
             /*checks if child exists*/
             if(nextStatus != SUCCESS){
                fprintf(stderr, "child does not exist\n");
