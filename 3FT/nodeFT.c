@@ -87,7 +87,7 @@ boolean isFile, void *pvContents, size_t length) {
 
    assert(oPPath != NULL);
 
-   /*define ulIndex*/
+   /*define ulIndex before use*/
    ulIndex = 0;
 
    /* allocate space for a new node */

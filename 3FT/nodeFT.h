@@ -16,7 +16,11 @@ typedef struct node *Node_T;
 
 /*
   Creates a new node in the File Tree, with path oPPath and
-  parent oNParent. Returns an int SUCCESS status and sets *poNResult
+  parent oNParent. Depending on if it is a file or directory (based off
+  the paramter isFile), the function will set respective parameters. If
+  it is a file, the parameters pvContents and length are set. Otherwise
+  the other parameters are used to set the values for the directory
+  node. Returns an int SUCCESS status and sets *poNResult
   to be the new node if successful. Otherwise, sets *poNResult to NULL
   and returns status:
   * MEMORY_ERROR if memory could not be allocated to complete request
@@ -85,8 +89,8 @@ int Node_compare(Node_T oNFirst, Node_T oNSecond);
 void *Node_returnContents(Node_T oNNode);
 
 /* Replaces the contents and its length of oNNode with pvNewContents
-  and ulNewLength then return the old contents 
-  * NULL if oNNode is a directory */
+  and ulNewLength then return the old contents as a void pointer. 
+  Function returns NULL if oNNode is a directory */
 void* Node_replaceContents(Node_T oNNode, void *pvNewContents,
                            size_t ulNewLength);
 
@@ -94,8 +98,7 @@ void* Node_replaceContents(Node_T oNNode, void *pvNewContents,
 boolean Node_isFile(Node_T oNNode);
 
 /* Inputs a node and returns the length of its concents if its
-  a file
-  * NOT_A_FILE if oNNode is a directory */
+  a file. Function returns NOT_A_FILE if oNNode is a directory */
 size_t Node_contentsLength(Node_T oNNode);
 
 /*
