@@ -312,6 +312,18 @@ Do you want to validate 'pvContents' through an assert?
 nodeFT.c: line 307: medium priority:
 Do you want to validate 'pvNewContents' through an assert?
 
+Warnings regarding comment specificity:
+
+We agree with all of critTer's comment warnings as it is good practice
+to refer to all parameters of a function and what it returns within
+the function's comments.
+
+Warnings regarding asserts:
+
+We disagree as it is not neccessary to assert all these variables since
+they can be any value (including NULL) when they are passed as a 
+parameter to certain functions.
+
 ------------------------------------------------------------------------
 For each of the five faulty BDT implementations required by Step
 1.5, identify the function where there is a bug. You do not have to
