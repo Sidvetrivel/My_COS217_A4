@@ -578,6 +578,5 @@ char *FT_toString(void) {
                 (void *) result);
 
    DynArray_free(nodes);
-
    return result;
 }

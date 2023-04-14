@@ -184,7 +184,7 @@ your disagreements with them? Copy the splint warnings here, and
 express your disagreement after each warning. If there are no
 warnings, then write "None."
 
------------THE FOLLOWING WARNINGS PERTAIN TO FILE ft.C------------------
+-----------THE FOLLOWING WARNINGS PERTAIN TO FILE ft.c------------------
 
 ft.c: (in function FT_traversePath)
 ft.c:91:42: Variable ulChildID used before definition
