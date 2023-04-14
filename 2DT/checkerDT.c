@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------*/
 /* checkerDT.c                                                        */
-/* Author:                                                            */
+/* Author: Julian and Sid                                                           */
 /*--------------------------------------------------------------------*/
 
 #include <assert.h>
@@ -93,11 +93,8 @@ boolean CheckerDT_Node_isValid(Node_T oNNode) {
 /*
    Performs a pre-order traversal of the tree rooted at oNNode.
    Returns FALSE if a broken invariant is found and
-   returns TRUE otherwise.
-
-   You may want to change this function's return type or
-   parameter list to facilitate constructing your checks.
-   If you do, you should update this function comment.
+   returns TRUE otherwise. The function also takes parameter size_t* 
+   realIndex to update the true number of nodes.
 */
 static boolean CheckerDT_treeCheck(Node_T oNNode, size_t* realIndex) {
    size_t ulIndex;

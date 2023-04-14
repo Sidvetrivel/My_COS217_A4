@@ -92,7 +92,7 @@ Was it fun?
 will help your grader to grade it in the most favorable light? In
 particular, what bugs are in your submission?
 
-
+N/A
 
 ------------------------------------------------------------------------
 What warnings does splint generate for Part 2's checker, and what are
@@ -100,6 +100,67 @@ your disagreements with them? Copy the splint warnings here, and
 express your disagreement after each warning. If there are no
 warnings, then write "None."
 
+path.h:24:5: Function Path_new declared but not defined
+  A function or variable is declared, but not defined in any source code file.
+  (Use -declundef to inhibit warning)
+path.h:33:5: Function Path_dup declared but not defined
+path.h:44:5: Function Path_prefix declared but not defined
+path.h:47:6: Function Path_free declared but not defined
+path.h:50:13: Function Path_getPathname declared but not defined
+path.h:56:8: Function Path_getStrLength declared but not defined
+path.h:63:5: Function Path_comparePath declared but not defined
+path.h:70:5: Function Path_compareString declared but not defined
+path.h:77:8: Function Path_getDepth declared but not defined
+path.h:86:8: Function Path_getSharedPrefixDepth declared but not defined
+path.h:94:13: Function Path_getComponent declared but not defined
+nodeDT.h:29:5: Function Node_new declared but not defined
+nodeDT.h:36:8: Function Node_free declared but not defined
+nodeDT.h:39:8: Function Node_getPath declared but not defined
+nodeDT.h:50:9: Function Node_hasChild declared but not defined
+nodeDT.h:54:8: Function Node_getNumChildren declared but not defined
+nodeDT.h:62:5: Function Node_getChild declared but not defined
+nodeDT.h:69:8: Function Node_getParent declared but not defined
+nodeDT.h:76:5: Function Node_compare declared but not defined
+nodeDT.h:85:7: Function Node_toString declared but not defined
+dynarray.h:21:12: Function DynArray_new declared but not defined
+dynarray.h:27:6: Function DynArray_free declared but not defined
+dynarray.h:33:8: Function DynArray_getLength declared but not defined
+dynarray.h:39:7: Function DynArray_get declared but not defined
+dynarray.h:46:7: Function DynArray_set declared but not defined
+dynarray.h:55:5: Function DynArray_add declared but not defined
+dynarray.h:63:5: Function DynArray_addAt declared but not defined
+dynarray.h:70:7: Function DynArray_removeAt declared but not defined
+dynarray.h:78:6: Function DynArray_toArray declared but not defined
+dynarray.h:87:26: Function DynArray_map declared but not defined
+dynarray.h:98:26: Function DynArray_sort declared but not defined
+dynarray.h:113:27: Function DynArray_search declared but not defined
+dynarray.h:129:28: Function DynArray_bsearch declared but not defined
+checkerDT.h:21:9: Function exported but not used outside checkerDT:
+                     CheckerDT_Node_isValid
+A declaration is exported, but not used outside this module. 
+Declaration can use static qualifier. 
+(Use -exportlocal to inhibit warning)
+  checkerDT.c:91:1: Definition of CheckerDT_Node_isValid
+
+Finished checking --- 34 code warnings
+
+Warnings relating to functions delcared but not defined:
+
+We disagree with these warnings as the design is much more modular 
+if we were to split our design between the source file and the header
+file to protect the definition of the functions from the client. 
+In the implementation we are using, it is not neccessary to 
+define the function within path.h, nodeDT.h, and dynarray.h.
+
+
+Warning relating to CheckerDT_Node_isValid not being used outside of 
+checkerDT:
+
+We disagree with this warning as even though we do not call this 
+function by itself, it is crucial to the CheckerDT_isValid function 
+that is called. However, we want to give client the option to call
+if any particular Node is valid even though the sample client for 
+2DT does not actually call this function.
 
 
 ------------------------------------------------------------------------
@@ -108,6 +169,22 @@ disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
 
+checkerDT.c: line 51: low priority: 
+A loop should consist of fewer than 35 lines;
+this loop consists of 36 lines; consider refactoring
+
+Line 51: We disagree with this comment because while it is 
+very much feasible to get the loop down to <35 lines, we are
+choosing to keep the line breaks to ensure better readibility
+of code.
+
+Line 93:
+checkerDT.c: line 102: medium priority:
+Do you want to validate 'realIndex' through an assert?
+
+Line 93: We think that there isn't a need to validate
+realIndex as it is initialized to 0 when CheckerDT_isValid 
+is called.
 
 
 ------------------------------------------------------------------------
@@ -115,6 +192,56 @@ What warnings does splint generate on your Part 3 code, and what are
 your disagreements with them? Copy the splint warnings here, and
 express your disagreement after each warning. If there are no
 warnings, then write "None."
+
+ft.c: (in function FT_traversePath)
+ft.c:91:42: Variable ulChildID used before definition
+  An rvalue is used that may not be initialized to a value on some execution
+  path. (Use -usedef to inhibit warning)
+ft.c: (in function FT_replaceFileContents)
+ft.c:421:4: Return value (type void *) ignored: Node_replaceCont...
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalother to inhibit warning)
+dynarray.h:21:12: Function DynArray_new declared but not defined
+  A function or variable is declared, but not defined in any source code file.
+  (Use -declundef to inhibit warning)
+dynarray.h:27:6: Function DynArray_free declared but not defined
+dynarray.h:33:8: Function DynArray_getLength declared but not defined
+dynarray.h:39:7: Function DynArray_get declared but not defined
+dynarray.h:46:7: Function DynArray_set declared but not defined
+dynarray.h:55:5: Function DynArray_add declared but not defined
+dynarray.h:63:5: Function DynArray_addAt declared but not defined
+dynarray.h:70:7: Function DynArray_removeAt declared but not defined
+dynarray.h:78:6: Function DynArray_toArray declared but not defined
+dynarray.h:87:26: Function DynArray_map declared but not defined
+dynarray.h:98:26: Function DynArray_sort declared but not defined
+dynarray.h:113:27: Function DynArray_search declared but not defined
+dynarray.h:129:28: Function DynArray_bsearch declared but not defined
+path.h:24:5: Function Path_new declared but not defined
+path.h:33:5: Function Path_dup declared but not defined
+path.h:44:5: Function Path_prefix declared but not defined
+path.h:47:6: Function Path_free declared but not defined
+path.h:50:13: Function Path_getPathname declared but not defined
+path.h:56:8: Function Path_getStrLength declared but not defined
+path.h:63:5: Function Path_comparePath declared but not defined
+path.h:70:5: Function Path_compareString declared but not defined
+path.h:77:8: Function Path_getDepth declared but not defined
+path.h:86:8: Function Path_getSharedPrefixDepth declared but not defined
+path.h:94:13: Function Path_getComponent declared but not defined
+nodeFT.h:29:5: Function Node_new declared but not defined
+nodeFT.h:37:8: Function Node_free declared but not defined
+nodeFT.h:40:8: Function Node_getPath declared but not defined
+nodeFT.h:52:9: Function Node_hasChild declared but not defined
+nodeFT.h:58:8: Function Node_getNumChildren declared but not defined
+nodeFT.h:67:5: Function Node_getChild declared but not defined
+nodeFT.h:74:8: Function Node_getParent declared but not defined
+nodeFT.h:81:5: Function Node_compare declared but not defined
+nodeFT.h:85:7: Function Node_returnContents declared but not defined
+nodeFT.h:90:7: Function Node_replaceContents declared but not defined
+nodeFT.h:94:9: Function Node_isFile declared but not defined
+nodeFT.h:99:8: Function Node_contentsLength declared but not defined
+nodeFT.h:108:7: Function Node_toString declared but not defined
+
+Finished checking --- 39 code warnings
 
 
 
@@ -151,6 +278,6 @@ the error manifests itself or is "noticed" by the client.
 What are your critiques of the given DT implementations, as
 specified in Step 2.5?
 
-
+- dt_insert vs dt_rm naming consistency
 
 ------------------------------------------------------------------------
