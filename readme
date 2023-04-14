@@ -144,7 +144,7 @@ Declaration can use static qualifier.
 
 Finished checking --- 34 code warnings
 
-Warnings relating to functions delcared but not defined:
+Warnings relating to functions being declared but not defined:
 
 We disagree with these warnings as the design is much more modular 
 if we were to split our design between the source file and the header
@@ -169,15 +169,6 @@ disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
 
-checkerDT.c: line 51: low priority: 
-A loop should consist of fewer than 35 lines;
-this loop consists of 36 lines; consider refactoring
-
-Line 51: We disagree with this comment because while it is 
-very much feasible to get the loop down to <35 lines, we are
-choosing to keep the line breaks to ensure better readibility
-of code.
-
 Line 93:
 checkerDT.c: line 102: medium priority:
 Do you want to validate 'realIndex' through an assert?
@@ -192,6 +183,8 @@ What warnings does splint generate on your Part 3 code, and what are
 your disagreements with them? Copy the splint warnings here, and
 express your disagreement after each warning. If there are no
 warnings, then write "None."
+
+-----------THE FOLLOWING WARNINGS PERTAIN TO FILE ft.C------------------
 
 ft.c: (in function FT_traversePath)
 ft.c:91:42: Variable ulChildID used before definition
@@ -243,7 +236,31 @@ nodeFT.h:108:7: Function Node_toString declared but not defined
 
 Finished checking --- 39 code warnings
 
+Warning regarding usage of ulChild before instantiation:
 
+While it is best practice to instantiate ulChild to NULL, it is not
+neccessary in this context as regardless of where the pointer for
+ulChild is pointing to, its address is sure to change with the function
+Node_hasChild is called.
+
+Warning regarding the result of Node_replaceContents not being used:
+
+Since the function FT_replaceFileContents does not return the result
+of Node_replaceContents, there is no need to capture the result. We 
+only need the function to replace the contents of the file and do not
+need the result (the old contents) to be returned within 
+FT_replaceFileContents.
+
+Warnings relating to functions being declared but not defined:
+
+We disagree with these warnings as these warnings flag the use of a 
+header file and separate source code files. However, by doing this,
+it makes the code much more modular and easier to read. Furthermore,
+the header file serves the purpose of protecting the implementations
+of the functions from the client. As a result, we can ignore this 
+warning for path.h, nodeDT.h, and dynarray.h.
+
+-------THE FOLLOWING LINES PERTAIN TO FILE NodeFT.c---------------------
 
 ------------------------------------------------------------------------
 What warnings does critTer generate on your Part 3 code, and what are
