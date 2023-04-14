@@ -149,7 +149,7 @@ boolean CheckerDT_isValid(boolean bIsInitialized, Node_T oNRoot,
    returnTreeCheck = CheckerDT_treeCheck(oNRoot, &realIndex);
 
    if(realIndex != ulCount){
-         fprintf(stderr, "node mismatch\n");
+         fprintf(stderr, "ulCount does not match number of nodes\n");
          return FALSE;
    }
 
